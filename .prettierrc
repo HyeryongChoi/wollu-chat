@@ -15,6 +15,7 @@
     "^react",
     "<THIRD_PARTY_MODULES>",
 
+    "^@store/(.*)$",
     "^@components/(.*)$",
     "^@contexts/(.*)$",
     "^@hooks/(.*)$",

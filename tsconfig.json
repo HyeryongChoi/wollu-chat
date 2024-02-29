@@ -9,6 +9,7 @@
     /* Absolute Paths */
     "baseUrl": ".",
     "paths": {
+      "@store/*": ["src/store/*"],
       "@components/*": ["src/components/*"],
       "@contexts/*": ["src/contexts/*"],
       "@hooks/*": ["src/hooks/*"],
