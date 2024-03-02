@@ -21,7 +21,9 @@ interface TriggerProps extends ComponentPropsWithoutRef<'button'> {
   asChild?: boolean;
 }
 
-interface ContentProps extends ComponentPropsWithoutRef<'dialog'> {}
+interface ContentProps extends ComponentPropsWithoutRef<'dialog'> {
+  onBackdropClick?: VoidFunction;
+}
 
 interface CloseProps extends ComponentPropsWithoutRef<'button'> {
   asChild?: boolean;
@@ -53,11 +55,11 @@ function Trigger(props: TriggerProps) {
 }
 
 function Content(props: ContentProps) {
-  const { children, ...restProps } = props;
+  const { children, onBackdropClick, ...restProps } = props;
   const { defaultOpen, dialogRef, openDialog, closeDialog } = useDialogContext();
 
   const handleBackdropClick = (e: MouseEvent<HTMLDialogElement>) => {
-    if (e.currentTarget === e.target) closeDialog();
+    if (e.currentTarget === e.target) executeSequentially(onBackdropClick, closeDialog)(null);
   };
 
   useEffect(() => {

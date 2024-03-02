@@ -15,5 +15,5 @@ export const useRegisterMutation = () => {
     },
   });
 
-  return { register: mutate, restMutation };
+  return { register: mutate, ...restMutation };
 };
