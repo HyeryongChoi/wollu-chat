@@ -1,17 +1,33 @@
+import { Fragment, ReactNode } from 'react';
+
 import ExcelLogoIcon from '/excel_logo.svg';
 
-function Spreadsheet() {
+type RenderProps<P extends object = object> = (payload?: P) => ReactNode;
+interface SpreadsheetProps {
+  renderItems?: RenderProps[];
+}
+
+function Spreadsheet(props: SpreadsheetProps) {
+  const { renderItems } = props;
   const tableHTML = createHTMLTable();
 
   return (
-    <div className='h-screen w-full overflow-hidden' aria-label='엑셀인척하는 배경'>
-      <header className='flex w-full items-center bg-[#F9FBFD] p-4' aria-hidden>
+    <div className='absolute h-screen w-full overflow-hidden' aria-label='엑셀인척하는 배경'>
+      <header className='flex w-full items-center bg-[#F9FBFD] p-4'>
         <img className='m-2 w-10' src={ExcelLogoIcon} alt='' />
         <div>
-          <h1 className='mb-2 text-lg'>제목 없는 스프레드시트</h1>
-          <p className='whitespace-pre text-sm'>
-            {`파일   수정   보기   삽입   서식   데이터   도구   확장프로그램   도움말`}
-          </p>
+          <h1 className='mb-2 text-lg' aria-hidden>
+            제목 없는 스프레드시트
+          </h1>
+          <div className='flex whitespace-pre text-sm' aria-hidden>
+            <p aria-hidden>
+              {`파일   수정   보기   삽입   서식   데이터   도구   확장프로그램   도움말   `}
+            </p>
+            {renderItems &&
+              renderItems.map((renderItem, index) => (
+                <Fragment key={index}>{renderItem()}</Fragment>
+              ))}
+          </div>
         </div>
       </header>
       {tableHTML}
