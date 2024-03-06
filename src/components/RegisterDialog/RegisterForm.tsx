@@ -49,7 +49,7 @@ function RegisterForm() {
             {...registerFormValue('email', { required: true, pattern: /^\S+@\S+$/i })}
             className='mb-1 w-full appearance-none border-b bg-transparent px-2 py-1 focus:border-gray-400 focus:outline-none'
           />
-          <p className='mb-1 h-4 text-xs text-red-400'>
+          <p className='mb-1 h-4 text-xs text-red-400' aria-live='assertive'>
             {errors.email && errors.email.type === 'required' && '이메일을 입력해 주세요.'}
             {errors.email &&
               errors.email.type === 'pattern' &&
@@ -69,7 +69,7 @@ function RegisterForm() {
             })}
             className='mb-1 w-full appearance-none border-b bg-transparent px-2 py-1 focus:border-gray-400 focus:outline-none'
           />
-          <p className='mb-1 h-4 text-xs text-red-400'>
+          <p className='mb-1 h-4 text-xs text-red-400' aria-live='assertive'>
             {errors.name && errors.name.type === 'required' && '이름을 입력해 주세요.'}
             {errors.name && errors.name.type === 'maxLength' && '이름은 최대 10자 이하여야 합니다.'}
             {errors.name &&
@@ -87,7 +87,7 @@ function RegisterForm() {
             {...registerFormValue('password', { required: true, minLength: 8, maxLength: 32 })}
             className='mb-1 w-full appearance-none border-b bg-transparent px-2 py-1 focus:border-gray-400 focus:outline-none'
           />
-          <p className='mb-1 h-4 text-xs text-red-400'>
+          <p className='mb-1 h-4 text-xs text-red-400' aria-live='assertive'>
             {errors.password && errors.password.type === 'required' && '비밀번호를 입력해 주세요.'}
             {errors.password &&
               errors.password.type === 'minLength' &&
@@ -110,7 +110,7 @@ function RegisterForm() {
             })}
             className='mb-1 w-full appearance-none border-b bg-transparent px-2 py-1 focus:border-gray-400 focus:outline-none'
           />
-          <p className='mb-1 h-4 text-xs text-red-400'>
+          <p className='mb-1 h-4 text-xs text-red-400' aria-live='assertive'>
             {errors.passwordConfirm &&
               errors.passwordConfirm.type === 'required' &&
               '비밀번호 확인을 입력해 주세요.'}
@@ -119,7 +119,9 @@ function RegisterForm() {
               '비밀번호가 다릅니다.'}
           </p>
 
-          <p className='mb-2 h-4 text-xs text-red-400'>{errorMessageFromSubmit}</p>
+          <p className='mb-2 h-4 text-xs text-red-400' aria-live='assertive'>
+            {errorMessageFromSubmit}
+          </p>
 
           <button
             type='submit'
