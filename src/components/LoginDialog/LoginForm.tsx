@@ -34,11 +34,11 @@ function LoginForm() {
           <h3 className='text-lg font-bold text-gray-800'>로그인</h3>
         </div>
         <form className='w-full' onSubmit={handleSubmit(onSubmit)}>
-          <label htmlFor='email-register' className='mb-1 block font-bold text-gray-700'>
+          <label htmlFor='email-login' className='mb-1 block font-bold text-gray-700'>
             이메일
           </label>
           <input
-            id='email-register'
+            id='email-login'
             type='email'
             placeholder='123@example.com'
             {...registerFormValue('email', { required: true, pattern: /^\S+@\S+$/i })}
@@ -51,11 +51,11 @@ function LoginForm() {
               '올바른 이메일 형식으로 입력해 주세요.'}
           </p>
 
-          <label htmlFor='password-register' className='mb-1 block font-bold text-gray-700'>
+          <label htmlFor='password-login' className='mb-1 block font-bold text-gray-700'>
             비밀번호
           </label>
           <input
-            id='password-register'
+            id='password-login'
             type='password'
             placeholder='******'
             {...registerFormValue('password', { required: true, minLength: 8, maxLength: 32 })}

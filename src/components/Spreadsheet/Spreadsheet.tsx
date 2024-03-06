@@ -16,11 +16,11 @@ function Spreadsheet(props: SpreadsheetProps) {
       <header className='flex w-full items-center bg-[#F9FBFD] p-4'>
         <img className='m-2 w-10' src={ExcelLogoIcon} alt='' />
         <div>
-          <h1 className='mb-2 text-lg' aria-hidden>
+          <h1 className='mb-2 select-none text-lg' aria-hidden>
             제목 없는 스프레드시트
           </h1>
           <div className='flex whitespace-pre text-sm' aria-hidden>
-            <p aria-hidden>
+            <p className='select-none' aria-hidden>
               {`파일   수정   보기   삽입   서식   데이터   도구   확장프로그램   도움말   `}
             </p>
             {renderItems &&
@@ -74,7 +74,7 @@ const createHTMLTable = (rows: number = 60, cols: number = 26) => {
       );
     } else {
       rowData.push(
-        <th key={-1} scope='row' className=' border-r border-gray-300 font-normal'>
+        <th key={-1} scope='row' className='border-r border-gray-300 font-normal '>
           {i + 1}
         </th>,
       );
@@ -83,7 +83,7 @@ const createHTMLTable = (rows: number = 60, cols: number = 26) => {
     // 행 번호 추가
     for (let j = 0; j < cols; j++) {
       if (i === 0 && j === 0) rowData.push(<td key={j} className='border-2 border-[#1C73E8]' />);
-      else rowData.push(<td key={j} className=' border-r border-gray-200' />);
+      else rowData.push(<td key={j} className='border-r border-gray-200 ' />);
     }
 
     const row = (
