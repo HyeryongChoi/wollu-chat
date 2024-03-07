@@ -7,6 +7,7 @@ import { useAppSelector } from '@store/index';
 import { clearUser, selectUser, setUser } from '@store/userSlice';
 
 import LoginDialog from '@components/LoginDialog/LoginDialog';
+import LogoutButton from '@components/LogoutButton/LogoutButton';
 import RegisterDialog from '@components/RegisterDialog/RegisterDialog';
 import Spreadsheet from '@components/Spreadsheet/Spreadsheet';
 
@@ -34,7 +35,7 @@ function App() {
     };
   }, []);
 
-  const items = currentUser.uid ? [() => <p>{currentUser.name}</p>] : [LoginDialog, RegisterDialog];
+  const items = currentUser.uid ? [LogoutButton] : [LoginDialog, RegisterDialog];
 
   return (
     <div className='relative w-full'>
