@@ -2,9 +2,11 @@ import { Fragment, ReactNode } from 'react';
 
 import ExcelLogoIcon from '/excel_logo.svg';
 
-type RenderProps<P extends object = object> = (payload?: P) => ReactNode;
+type RenderProp = ReactNode | RenderFunction;
+type RenderFunction<P extends object = object> = (payload?: P) => ReactNode;
+
 interface SpreadsheetProps {
-  renderItems?: RenderProps[];
+  renderItems?: RenderProp[];
 }
 
 function Spreadsheet(props: SpreadsheetProps) {
@@ -25,7 +27,9 @@ function Spreadsheet(props: SpreadsheetProps) {
             </p>
             {renderItems &&
               renderItems.map((renderItem, index) => (
-                <Fragment key={index}>{renderItem()}</Fragment>
+                <Fragment key={index}>
+                  {typeof renderItem == 'function' ? renderItem() : renderItem}
+                </Fragment>
               ))}
           </div>
         </div>
