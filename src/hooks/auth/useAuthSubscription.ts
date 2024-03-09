@@ -29,5 +29,5 @@ export const useAuthSubscription = () => {
     };
   }, []);
 
-  return { isLoggedIn: currentUser.uid.length > 0 };
+  return { isLoggedIn: currentUser.uid.length > 0, authenticatedUser: currentUser };
 };

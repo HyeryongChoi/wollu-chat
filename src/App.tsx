@@ -6,9 +6,16 @@ import Spreadsheet from '@components/Spreadsheet/Spreadsheet';
 import { useAuthSubscription } from '@hooks/auth/useAuthSubscription';
 
 function App() {
-  const { isLoggedIn } = useAuthSubscription();
+  const { isLoggedIn, authenticatedUser } = useAuthSubscription();
 
-  const items = isLoggedIn ? [LogoutButton] : [LoginDialog, RegisterDialog];
+  const items = isLoggedIn
+    ? [
+        <p>
+          반가워요, {authenticatedUser.name}님!{'   '}
+        </p>,
+        LogoutButton,
+      ]
+    : [LoginDialog, RegisterDialog];
 
   return (
     <div className='relative w-full'>
