@@ -1,15 +1,12 @@
 import {
-  Children,
   ComponentPropsWithoutRef,
   MouseEvent,
   PropsWithChildren,
-  ReactNode,
   cloneElement,
-  isValidElement,
   useEffect,
 } from 'react';
 
-import { executeSequentially } from '@utils/common';
+import { executeSequentially, getValidChild } from '@utils/common';
 
 import DialogProvider, { useDialogContext } from './DialogContext';
 
@@ -102,9 +99,3 @@ Dialog.Content = Content;
 Dialog.Close = Close;
 
 export default Dialog;
-
-const getValidChild = <T,>(children: ReactNode) => {
-  const child = Children.only(children);
-
-  return isValidElement<T>(child) ? child : null;
-};
