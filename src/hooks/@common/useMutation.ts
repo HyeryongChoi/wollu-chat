@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type MutationFunction<TData = unknown, TProps = unknown> = (props: TProps) => Promise<TData>;
 
@@ -20,7 +20,10 @@ export const useMutation = <TData = unknown, TProps = never>(
   const mutate = async (props: Parameters<typeof mutationFn>[number]) => {
     try {
       setIsLoading(true);
+
       await mutationFn(props);
+
+      setIsSuccess(true);
     } catch (error) {
       setIsError(true);
 
@@ -34,11 +37,12 @@ export const useMutation = <TData = unknown, TProps = never>(
       }
     } finally {
       setIsLoading(false);
-      setIsSuccess(!isError);
-
-      if (!isError) onSuccess();
     }
   };
+
+  useEffect(() => {
+    if (isSuccess) onSuccess();
+  }, [isSuccess, onSuccess]);
 
   return { mutate, isSuccess, isLoading, isError, errorMessage };
 };
