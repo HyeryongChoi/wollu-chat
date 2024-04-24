@@ -7,7 +7,7 @@ function UserDropdown() {
 
   return (
     <Dropdown>
-      <Dropdown.Trigger>
+      <Dropdown.Trigger asChild>
         <button className='mr-2' type='button'>
           반가워요, {authenticatedUser.name}님!
         </button>
