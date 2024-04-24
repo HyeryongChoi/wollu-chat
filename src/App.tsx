@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import LoginDialog from '@components/LoginDialog/LoginDialog';
 import LogoutButton from '@components/LogoutButton/LogoutButton';
 import RegisterDialog from '@components/RegisterDialog/RegisterDialog';
@@ -11,6 +13,10 @@ function App() {
 
   const items = isLoggedIn ? [UserDropdown, LogoutButton] : [LoginDialog, RegisterDialog];
 
+  useEffect(() => {
+    /** @todo toast로 변경 */
+    if (isLoggedIn) alert('로그인이 완료되었습니다.');
+  }, [isLoggedIn]);
   return (
     <div className='relative w-full'>
       <Spreadsheet renderItems={items} />
